@@ -4,6 +4,7 @@ export default function Page () {
 
     return ( <div style={{'textAlign':'center'}}>
         <h1>Sobre Nós</h1>
+        <h2>Estamos na aula 2!</h2>
         <p>
             {description}
         </p>
