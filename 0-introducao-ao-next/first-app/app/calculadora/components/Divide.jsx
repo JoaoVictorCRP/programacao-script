@@ -4,6 +4,6 @@ export default function Divide(props) {
     }
     
     return (
-        <p>O resultado da divisão é {divide(props.numbers[0], props.numbers[1])}</p>
+        <p>O resultado da divisão: {props.numbers[0]} / {props.numbers[1]} é:    {divide(props.numbers[0], props.numbers[1])}</p>
     )
 }
