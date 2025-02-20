@@ -1,0 +1,65 @@
+.button {
+    background-color: hsl(101, 92%, 29%);
+    width: 150px;
+    height: 75px;
+    border: none;
+    padding: 5px;
+    border-radius: 5px;
+    color: #fff;
+    
+}
+
+.h1 {
+    text-align: center;
+}
+
+.button:hover {
+    background-color: hsl(101, 100%, 15%);
+    /* shakezinho engraçado*/
+    animation: shake 0.82s cubic-bezier(.36, .07, .19, .97) both infinite; 
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+}
+
+.button:active {
+    translate: y;
+}
+
+@keyframes shake {
+    10%,
+    90% {
+      transform: translate3d(-1px, 0, 0);
+    }
+    20%,
+    80% {
+      transform: translate3d(2px, 0, 0);
+    }
+    30%,
+    50%,
+    70% {
+      transform: translate3d(-4px, 0, 0);
+    }
+    40%,
+    60% {
+      transform: translate3d(4px, 0, 0);
+    }
+}
+
+.div {
+    text-align: center;
+    background-color: #ffffffe2;
+    color: #000;
+    padding-bottom: 15px;
+}
+
+.code {
+    font-size: 20px;
+}
+
+.codeDiv {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    background-color: #300924; /* Cor do ubuntu, kkkkk */
+    color: #fff;
+}
