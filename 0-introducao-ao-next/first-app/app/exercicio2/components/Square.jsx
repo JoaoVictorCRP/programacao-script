@@ -1,13 +1,12 @@
-
 export default function Square(props){
-    style = {
-        'backgroundColor':props.color
-        
-    }
-
     return(
-        <div style={}>
-            
+        <div style={{ 
+            "color":props.color,
+            "border": 'solid 40px',
+            "width": 40,
+            "height": 40
+        }}>
+
         </div>
     )
 }
