@@ -1,0 +1,12 @@
+.piece {
+    color:#B3250A;
+    border: solid 25px;
+    width: 25px;
+    height: 25px;
+    border-radius: 25px;
+    outline: solid rgb(235, 181, 4) 2px;
+}
+
+.piece:hover {
+    color:#821d0a;
+}
