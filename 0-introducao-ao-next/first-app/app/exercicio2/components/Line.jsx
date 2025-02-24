@@ -17,13 +17,13 @@ export default function Line(props) {
                 :
                 <>
                     <Square color="white"/>
-                    <Square color="black" isOccupied={true} teamColor={"#0a66b3"}/>
+                    <Square color="black" isOccupied={true} teamColor={props.teamColor}/>
                     <Square color="white"/>
-                    <Square color="black" isOccupied={true} teamColor={"#0a66b3"}/>
+                    <Square color="black" isOccupied={true} teamColor={props.teamColor}/>
                     <Square color="white"/>
-                    <Square color="black" isOccupied={true} teamColor={"#0a66b3"}/>
+                    <Square color="black" isOccupied={true} teamColor={props.teamColor}/>
                     <Square color="white"/>
-                    <Square color="black" isOccupied={true} teamColor={"#0a66b3"}/>
+                    <Square color="black" isOccupied={true} teamColor={props.teamColor}/>
                 </>
             }
         </div>
