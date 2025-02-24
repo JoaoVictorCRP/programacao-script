@@ -1,5 +1,7 @@
 import Title from "./components/Title"
 import Board from "./components/Board"
+import Line from "./components/Line"
+import InvertedLine from "./components/InvertedLine"
 
 export default function page() {
 

@@ -17,13 +17,13 @@ export default function InvertedLine(props) {
                 </>
                 :
                 <>
-                    <Square color="black" isOccupied={true}/>
+                    <Square color="black" isOccupied={true} teamColor={"#0a66b3"}/>
                     <Square color="white"/>
-                    <Square color="black" isOccupied={true}/>
+                    <Square color="black" isOccupied={true} teamColor={"#0a66b3"}/>
                     <Square color="white"/>
-                    <Square color="black" isOccupied={true}/>
+                    <Square color="black" isOccupied={true} teamColor={"#0a66b3"}/>
                     <Square color="white"/>
-                    <Square color="black" isOccupied={true}/>
+                    <Square color="black" isOccupied={true} teamColor={"#0a66b3"}/>
                     <Square color="white"/>
                 </>
             }
