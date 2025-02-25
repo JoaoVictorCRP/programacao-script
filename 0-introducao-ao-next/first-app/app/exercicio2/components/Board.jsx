@@ -1,11 +1,17 @@
+"use client";
+
 import Line from "./Line"
 import InvertedLine from "./InvertedLine"
+import { TeamOneColorContext } from "../context/TeamOneColorContext"; // Pegando o contexto do provider
+import { TeamTwoColorContext } from "../context/TeamTwoColorContext"; // Pegando o contexto do provider
+import { useContext } from "react";
 
 
 
 export default function Board() {
-    const team1Color = "#B3250A"; // Vermelho escuro
-    const team2Color = "#0a3b82"; // Azul escuro
+    
+    const team1Color = useContext(TeamOneColorContext); // Vermelho escuro
+    const team2Color = useContext(TeamTwoColorContext); // Azul escuro
 
     return (
         <>
