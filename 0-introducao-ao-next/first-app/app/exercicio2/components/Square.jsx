@@ -11,7 +11,8 @@ export default function Square(props){
             "alignItems":"center",
             "justifyContent":"center"
         }}>
-            {<Piece teamColor={props.teamColor}/>}
+            
+            {props.isOccupied ? <Piece teamColor={props.teamColor}/> : <div/>}
         </div>
     )
 }

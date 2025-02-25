@@ -4,8 +4,8 @@ import InvertedLine from "./InvertedLine"
 
 
 export default function Board() {
-    const team1Color = "#0a66b3";
-    const team2Color = "#d30000";
+    const team1Color = "#B3250A"; // Vermelho escuro
+    const team2Color = "#0a3b82"; // Azul escuro
 
     return (
         <>

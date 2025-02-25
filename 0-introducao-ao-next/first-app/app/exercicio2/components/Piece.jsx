@@ -1,5 +1,3 @@
-import styles from "../styles/Piece.module.css"
-
 export default function Piece(props){
     return(
         <div style={{ 
@@ -8,7 +6,8 @@ export default function Piece(props){
             width: 25,
             height: 25,
             borderRadius: 25,
-            }}>
+            outline: "solid 2px #fff"
+        }}>
             {/* Peça */}
         </div>
     )
