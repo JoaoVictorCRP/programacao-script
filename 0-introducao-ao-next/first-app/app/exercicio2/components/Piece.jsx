@@ -1,21 +1,11 @@
-"use client";
-import { useContext } from "react";
-import { TeamOneColorContext } from "../context/TeamOneColorContext"; // Pegando o contexto do provider
-
+import style from '../style/piece.module.css'
 
 export default function Piece(props){
     const team1Color = useContext(TeamOneColorContext); // Vermelho escuro
     
     return(
-        <button style={{ 
-            color: team1Color.teamOneColor,
-            border: "solid 25px",
-            width: 25,
-            height: 25,
-            borderRadius: 25,
-            outline: "solid 2px #fff"
-        }}>
-            {/* Peça */}
+        <button className={props.team == 1 ? style.teamOnePiece : style.teamTwoPiece}>
+            
         </button>
     )
 }

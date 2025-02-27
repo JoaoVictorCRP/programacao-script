@@ -9,24 +9,17 @@ import { useContext } from "react";
 
 
 export default function Board() {
-    
-    const team1Color = useContext(TeamOneColorContext); // Vermelho escuro
-    // const team2Color = useContext(TeamTwoColorContext); // Azul escuro
-    const team2Color = "green"
 
     return (
         <>
-            <Line teamColor={team1Color}/>
-            <InvertedLine teamColor={team1Color}/>
-            <Line teamColor={team1Color}/>
+            <Line team="1"/>
+            <InvertedLine team="1"/>
+            <Line team="1"/>
             <InvertedLine isEmpty={true}/>
             <Line isEmpty={true}/>
-            <InvertedLine teamColor={team2Color}/>
-            <Line teamColor={team2Color}/>
-            <InvertedLine teamColor={team2Color}/>
-            {
-                console.log(team1Color)
-            }
+            <InvertedLine team="2"/>
+            <Line team="2"/>
+            <InvertedLine team="2"/>
         </>
 
     )
