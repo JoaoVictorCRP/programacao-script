@@ -9,6 +9,7 @@ export default function ColorPicker() {
     const { teamOneColor, setTeamOneColor } = useContext(TeamOneColorContext);
     // const { teamTwoColor, setTeamTwoColor } = useContext(TeamTwoColorContext);
 
+    // FIXME: TeamTwoColor is undefined
 
     const handleTeamOneColorChange = (e) => {
         setTeamOneColor(e.target.value);
