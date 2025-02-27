@@ -1,14 +1,9 @@
+import style from '../style/piece.module.css'
+
 export default function Piece(props){
     return(
-        <div style={{ 
-            color: props.teamColor,
-            border: "solid 25px",
-            width: 25,
-            height: 25,
-            borderRadius: 25,
-            outline: "solid 2px #fff"
-        }}>
-            {/* Peça */}
-        </div>
+        <button className={props.team == 1 ? style.teamOnePiece : style.teamTwoPiece}>
+            
+        </button>
     )
 }
