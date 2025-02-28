@@ -1,4 +1,7 @@
 # Trabalho (Desafio)
+## Como acessar
+- Para ter acesso a este conteúdo, acesse a rota `/exercicio2` em seu navegador.
+
 ## Instruções
 
 - Desenvolva uma aplicação em Next.js que exiba o tabuleiro de dama com foco apenas no visual, utilizando CSS para estilização. O objetivo é criar um layout estilizado, responsivo e organizado, sem necessidade de implementar interatividade ou regras do jogo.

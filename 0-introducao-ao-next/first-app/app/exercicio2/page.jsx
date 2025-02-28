@@ -1,14 +1,9 @@
 import Title from "./components/Title"
 import Board from "./components/Board"
-import ColorPicker from "./components/ColorPicker"
-import TeamOneColorProvider from "./context/TeamOneColorContext";
-import { TeamTwoColorProvider } from "./context/TeamTwoColorContext";
-
 
 export default function page() {
 
     return (
-        <TeamOneColorProvider>
         <div style={{
             "display":"flex",
             "alignItems":"center",
@@ -20,9 +15,7 @@ export default function page() {
         }} >
             c
                 <Title/>
-                <ColorPicker/>
                 <Board/>
         </div>
-        </TeamOneColorProvider>
     )
 }

@@ -1,10 +1,5 @@
-"use client";
-
 import Line from "./Line"
 import InvertedLine from "./InvertedLine"
-import { TeamOneColorContext } from "../context/TeamOneColorContext"; // Pegando o contexto do provider
-// import { TeamTwoColorContext } from "../context/TeamTwoColorContext"; // Pegando o contexto do provider
-import { useContext } from "react";
 
 
 
