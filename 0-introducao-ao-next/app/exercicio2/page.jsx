@@ -10,7 +10,7 @@ export default function page() {
             "justifyContent":"center",
             "border":"solid purple 2px",
             "padding":10,
-            "backgroundColor":"aliceblue",
+            "backgroundColor":"#499CB4",
             "flexDirection":"column"
         }} >
             c
