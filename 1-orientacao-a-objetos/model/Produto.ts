@@ -1,12 +1,12 @@
 export default class Produto {
     #id : number;
     #nome : string;
-    #email : string;
+    #preco : number;
 
-    constructor(id:number, nome:string, email:string) {
+    constructor(id:number, nome:string, preco:number) {
         this.#id = id;
         this.#nome = nome;
-        this.#email = email
+        this.#preco = preco
     }
 
     get id() {
@@ -17,7 +17,7 @@ export default class Produto {
         return this.#nome;
     }
 
-    get email() {
-        return this.#email;
+    get preco() {
+        return this.#preco;
     }
 }
