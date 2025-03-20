@@ -33,3 +33,7 @@ Após a instalação, basta rodar o projeto:
 
 ### Estilização
 - Para que o css seja importado corretamente dentro de um único componente específico devemos incluir a extensão `.module.css`
+
+### Renderização Condicional
+- É possível realizarmos um componente de maneira condicional através da criação de um componente que verifica o estado de uma variável, este componente pode retornar um componente `children`, ou então null.
+- Ver exemplo em `1-orientacao-a-objetos/render`.
