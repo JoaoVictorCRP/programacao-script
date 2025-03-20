@@ -1,5 +1,5 @@
-import listaProdutos from "@/data/listaProdutos";
-import Produto from "@/model/Produto";
+import listaProdutos from "@/app/data/listaProdutos";
+import Produto from "@/app/model/Produto";
 
 function renderLinhas(): React.ReactNode {
     return listaProdutos.map((produto: Produto) => (
