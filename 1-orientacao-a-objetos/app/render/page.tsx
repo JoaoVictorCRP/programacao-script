@@ -1,7 +1,7 @@
-import If from "@/app/render/component/if";
-import Par from "@/app/render/component/Par";
-import Lista from "@/app/render/component/Lista";
-import Item from "@/app/render/component/Item";
+import If from "@/app/render/components/if";
+import Par from "@/app/render/components/Par";
+import Lista from "@/app/render/components/Lista";
+import Item from "@/app/render/components/Item";
 
 
 export default function Render (){
