@@ -16,3 +16,40 @@
 .cardDiv {
     min-width: 200px;
 }
+
+.cardPastel {
+    padding: 5px 5px 10px;
+    margin-bottom:10px;
+    color:black;
+    text-align:center
+}
+
+.cardPastelButton {
+    background-color:green;
+    padding: 10px;
+    margin-top:5px;
+    color:white;
+    border-radius:20px;
+    outline:2px solid black
+}
+
+.cardPastelButton:hover {
+    opacity: 80%;
+}
+
+.cardPastelEsgotado {
+    padding: 5px 5px 10px;
+    margin-bottom:10px;
+    color:black;
+    text-align:center
+}
+
+.cardPastelEsgotadoButton {
+    background-color:grey;
+    padding: 10px;
+    margin-top:5px;
+    color:white;
+    border-radius:20px;
+    outline:2px solid black;
+    pointer-events: none3
+}

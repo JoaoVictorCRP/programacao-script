@@ -1,5 +1,6 @@
 import Image from "next/image";
 import PastelImage from "@/public/pastel.png";
+import styles from "../styles.module.css"
 
 interface CardPastel {
     sabor: string;
@@ -7,15 +8,7 @@ interface CardPastel {
 
 export default function CardPastelEsgotado ( props: CardPastel ) {
     return (
-        <div style={{
-            position:"relative",
-            padding:"5px",
-            paddingBottom:"10px",
-            marginBottom:"10px",
-            color:"black",
-            textAlign:"center",
-            overflow:"hidden" // impedir que o X ultrapasse o limite do card
-        }}>
+        <div className={styles.cardPastelEsgotado}>
             <Image
                 src={PastelImage}
                 alt={`Pastel de ${props.sabor}`}
@@ -24,16 +17,7 @@ export default function CardPastelEsgotado ( props: CardPastel ) {
             />
             <p>{`\tPastel de ${props.sabor}`}</p>
             <p style={{color:"red"}}>ESGOTADO</p>
-            <button
-                style={{
-                    backgroundColor:"grey",
-                    padding: "10px",
-                    marginTop:"5px",
-                    color:"white",
-                    borderRadius:"20px",
-                    outline:"2px solid black",
-                    pointerEvents: "none"
-                }}>
+            <button className={styles.cardPastelEsgotadoButton}>
                 Não disponível
             </button>
         </div>)

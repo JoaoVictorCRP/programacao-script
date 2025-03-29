@@ -1,5 +1,6 @@
 import Image from "next/image";
 import PastelImage from "@/public/pastel.png";
+import styles from "../styles.module.css";
 
 interface CardPastel {
     sabor: string;
@@ -7,13 +8,7 @@ interface CardPastel {
 
 export default function CardPastel( props: CardPastel ) {
     return (
-        <div style={{
-            padding:"5px",
-            paddingBottom:"10px",
-            marginBottom:"10px",
-            color:"black",
-            textAlign:"center"
-        }}>
+        <div className={styles.cardPastel}>
             <Image
                 src={PastelImage}
                 alt={`Pastel de ${props.sabor}`}
@@ -22,15 +17,7 @@ export default function CardPastel( props: CardPastel ) {
             />
             <p>{`Pastel de ${props.sabor}`}</p>
             <p>R$8,00</p>
-            <button
-                style={{
-                    backgroundColor:"green",
-                    padding: "10px",
-                    marginTop:"5px",
-                    color:"white",
-                    borderRadius:"20px",
-                    outline:"2px solid black"
-                }}>
+            <button className={styles.cardPastelButton}>
                 Comprar
             </button>
         </div>)
