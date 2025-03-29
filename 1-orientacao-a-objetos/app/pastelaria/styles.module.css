@@ -1,4 +1,18 @@
-.container {
+.title {
     text-align: center;
-    background-color: red;
+    background-color: #b6d7a8;
+    padding-bottom: 5px;
+    padding-top: 5px;
+}
+
+.container {
+    background-color: #fff;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly !important;
+    padding: 1rem;
+}
+
+.cardDiv {
+    min-width: 200px;
 }

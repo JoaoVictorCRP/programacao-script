@@ -5,15 +5,16 @@ interface CardPastel {
     sabor: string;
 }
 
-export default function CardPastel( props: CardPastel ) {
+export default function CardPastelEsgotado ( props: CardPastel ) {
     return (
         <div style={{
+            position:"relative",
             padding:"5px",
             paddingBottom:"10px",
             marginBottom:"10px",
-            outline:"1px solid black",
             color:"black",
-            textAlign:"center"
+            textAlign:"center",
+            overflow:"hidden" // impedir que o X ultrapasse o limite do card
         }}>
             <Image
                 src={PastelImage}
@@ -21,18 +22,19 @@ export default function CardPastel( props: CardPastel ) {
                 width="100"
                 height="50"
             />
-            <p>{`Pastel de ${props.sabor}`}</p>
-            <p>R$8,00</p>
+            <p>{`\tPastel de ${props.sabor}`}</p>
+            <p style={{color:"red"}}>ESGOTADO</p>
             <button
                 style={{
-                    backgroundColor:"green",
+                    backgroundColor:"grey",
                     padding: "10px",
                     marginTop:"5px",
                     color:"white",
                     borderRadius:"20px",
-                    outline:"2px solid black"
+                    outline:"2px solid black",
+                    pointerEvents: "none"
                 }}>
-                Comprar
+                Não disponível
             </button>
         </div>)
 }
