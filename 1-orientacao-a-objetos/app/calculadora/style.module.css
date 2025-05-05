@@ -1,4 +1,9 @@
+.calculatorDiv {
+    min-height: 500vh;
+    min-width: 500px;
+}
 .display {
     display: block;
     background-color: #dedede;
+    min-height: 15%;
 }
