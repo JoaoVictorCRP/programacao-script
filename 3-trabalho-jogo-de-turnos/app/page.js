@@ -1,17 +1,21 @@
+"use client";
 import Character from "@/app/components/Character";
+import gameManager from "@/app/hooks/gameManager";
 
 export default function Home() {
-  return (
+    const {hero, villain, handleHeroAction, heroTurn} = gameManager();
+
+    return (
     <div>
       <h1 className="text-center">Hero vs. Villain</h1>
       <Character
-        name="Villain"
-        life={100}
+        name={villain.name}
+        life={villain.life}
         isHero={false}
       />
       <Character
-        name="Herói"
-        life={100}
+        name={hero.name}
+        life={hero.life}
         isHero={true}
         isHeroTurn={true}
         onAction={true}
