@@ -7,19 +7,19 @@ Nela aprenderemos frameworks modernos para o desenvolvimento de aplicações web
 ## Para rodar o projeto
 
 1. Acesse o diretório da aplicação.
--  O conteúdo das primeiras aulas estão em `/0-introducao-ao-next/first-app`. Para acessar, utilize o comando
+-  O conteúdo das primeiras aulas estão em `/0-introducao-ao-next/first-app`. Para acessar, utilize o comando:
 
 ```bash
     cd ./0-introducao-ao-next/first-app
 ```
 
-2. Instale as dependências
+2. Instale as dependências:
 
 ```bash
     npm install
 ```
 
-Após a instalação, basta rodar o projeto:
+Após a instalação, basta rodar o projeto.
 
 3. Rode o projeto (em modo de desenvolvimento)
 
