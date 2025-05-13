@@ -1,4 +1,3 @@
-import If from "@/app/components/If";
 import Image from "next/image";
 
 
