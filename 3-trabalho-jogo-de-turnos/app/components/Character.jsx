@@ -1,5 +1,9 @@
+import If from "@/app/components/If";
+import Image from "next/image";
+
+
 export default function Character(props) {
-    const lifePercent = Math.max(0, )
+    const lifePercent = Math.max(0, props.life)
     console.log(lifePercent);
     return (
         <div className="character">
@@ -9,14 +13,19 @@ export default function Character(props) {
             </div>
 
             <div className="sprite">
-                Personagem aqui
+                <Image
+                    src={`/${props.isHero ? "hero":"villain"}/default.png`}
+                    alt={props.isHero ? "hero" : "villain"}
+                    width="200"
+                    height="200"
+                />
             </div>
             <h1>{props.name}</h1>
 
             {
                 props.isHero && props.onAction && (
                     <div className="actions">
-                        <button disabled={!props.isHeroTurn}></button>
+                        <button disabled={!(props.isHeroTurn)}>Atacar</button>
                     </div>
                 )
             }
