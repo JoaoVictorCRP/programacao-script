@@ -6,7 +6,7 @@ export default function Character(props) {
     console.log(lifePercent);
     return (
         <div className="character">
-            <div className="life-bar">
+            <div className="life-bar bg-green-500 w-lg">
                 <div className="life-fill" style={{width: lifePercent}}></div>
                 <div className="life-text">{props.life}</div>
             </div>
