@@ -8,11 +8,13 @@ export default function Home() {
     return (
     <div>
       <h1 className="text-center">Hero vs. Villain</h1>
-      <Character
+      <div className="flex justify-end">
+        <Character
         name={villain.name}
         life={villain.life}
         isHero={false}
-      />
+        />
+      </div>
       <Character
         name={hero.name}
         life={hero.life}
