@@ -19,8 +19,7 @@ export default function Home() {
         name={hero.name}
         life={hero.life}
         isHero={true}
-        isHeroTurn={isHeroTurn}
-        onAction={true}
+        onAction={isHeroTurn}
         handleHeroAction={handleHeroAction}
       />
     </div>

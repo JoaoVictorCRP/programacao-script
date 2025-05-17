@@ -17,6 +17,9 @@ export default function GameManager() {
     const actions = {
         attack: () => {
             modifyLife("villain", -10);
+        },
+        skip: () => {
+            // zzz...
         }
     }
 
@@ -29,7 +32,7 @@ export default function GameManager() {
         // Turno do vilão
         setTimeout(() => {
             // TODO: Lógica adicional de ataque do vilão
-            setIsHeroTurn(false)
+            setIsHeroTurn(true)
         }, 2000);
     }
 
