@@ -1,7 +1,6 @@
 import Image from "next/image";
 import ActionTab from "@/app/components/ActionTab";
 
-
 export default function Character(props) {
     const lifePercent = Math.max(0, props.life)
     console.log(lifePercent);
@@ -26,7 +25,9 @@ export default function Character(props) {
 
             {
                 props.isHero && props.onAction && (
-                    <ActionTab/>
+                    <ActionTab
+                        handleHeroAction={props.handleHeroAction}
+                    />
                 )
             }
         </div>

@@ -1,9 +1,9 @@
 "use client";
 import Character from "@/app/components/Character";
-import gameManager from "@/app/hooks/gameManager";
+import GameManager from "@/app/hooks/GameManager";
 
 export default function Home() {
-    const {hero, villain, handleHeroAction, heroTurn} = gameManager();
+    const {hero, villain, handleHeroAction, isHeroTurn} = GameManager();
 
     return (
     <div>
@@ -19,8 +19,9 @@ export default function Home() {
         name={hero.name}
         life={hero.life}
         isHero={true}
-        isHeroTurn={true}
+        isHeroTurn={isHeroTurn}
         onAction={true}
+        handleHeroAction={handleHeroAction}
       />
     </div>
   );

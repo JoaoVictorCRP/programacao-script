@@ -1,7 +1,6 @@
-"use cl"
 import { useState } from "react";
 
-export default function gameManager() {
+export default function GameManager() {
     const initialHero = {life:100, name:"Trump"}
     const initialVillain = {life:100, name:"Xi Jinping"}
 
@@ -21,19 +20,20 @@ export default function gameManager() {
         }
     }
 
-    const handleHeroActioon = (action) => {
+    const handleHeroAction = (action) => {
+        console.log(action);
         if(!isHeroTurn) return;
         actions[action]?.();
         setIsHeroTurn(false);
 
         // Turno do vilão
         setTimeout(() => {
-            // TODO: Lógica adicional
+            // TODO: Lógica adicional de ataque do vilão
             setIsHeroTurn(false)
         }, 2000);
     }
 
     return {
-        hero,villain, handleHeroActioon, isHeroTurn
+        hero,villain, handleHeroAction, isHeroTurn
     }
 }
