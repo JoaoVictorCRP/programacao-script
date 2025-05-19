@@ -14,6 +14,13 @@ export default function ActionTab(props) {
                 Atacar
             </button>
             <button
+                className="bg-slate-400 p-4 rounded-lg shadow-sm outline-black outline-solid
+                hover:bg-slate-500 cursor-pointer ml-5"
+                onClick={() => props.handleHeroAction('special')}
+            >
+                Apelar
+            </button>
+            <button
                 className="bg-slate-400 p-4 rounded-lg shadow-sm outline-black
                 outline-solid hover:bg-slate-500 cursor-pointer ml-5"
                 onClick={() => props.handleHeroAction('skip')}

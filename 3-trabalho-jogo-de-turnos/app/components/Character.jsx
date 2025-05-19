@@ -17,7 +17,7 @@ export default function Character(props) {
         <div className={`character ${props.isHero? "ml-5":"mr-5"}`}>
             <h1 className="font-black">{props.name}</h1>
 
-            <div className="life-bar bg-gray-300 w-xs h-6 rounded-lg relative overflow-hidden"> {/* Barra cinza que fica abaixo da barra verde de vida */}
+            <div className="outline-black outline-solid life-bar bg-gray-300 w-xs h-6 rounded-lg relative overflow-hidden"> {/* Barra cinza que fica abaixo da barra verde de vida */}
                 <div
                     className={classnames(lifeBarColor,"life-fill h-full transition-all duration-300")}
                     style={{ width: `${lifePercent}%` }}
