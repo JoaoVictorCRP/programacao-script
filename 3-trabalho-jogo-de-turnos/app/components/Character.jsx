@@ -8,7 +8,7 @@ export default function Character(props) {
     if (props.life>70) {
         lifeBarColor = "bg-green-500";
     } else {
-        lifeBarColor = props.life > 30 ? "bg-yellow-500" : "bg-red-500"; // fixme: não está ficando vermelho
+        lifeBarColor = props.life > 30 ? "bg-yellow-500" : "bg-red-500";
         console.log(lifeBarColor)
     }
     console.log(lifePercent);
@@ -17,9 +17,8 @@ export default function Character(props) {
         <div className={`character ${props.isHero? "ml-5":"mr-5"}`}>
             <h1 className="font-black">{props.name}</h1>
 
-            <div className="life-bar bg-gray-300 w-xs h-6 rounded-lg relative overflow-hidden"> { /* Barra cinza que fica abaixo da barra verde de vida */}
+            <div className="life-bar bg-gray-300 w-xs h-6 rounded-lg relative overflow-hidden"> {/* Barra cinza que fica abaixo da barra verde de vida */}
                 <div
-                    // className={`bg-${lifeBarColor}-500 life-fill h-full transition-all duration-300`}
                     className={classnames(lifeBarColor,"life-fill h-full transition-all duration-300")}
                     style={{ width: `${lifePercent}%` }}
                 ></div>
@@ -30,7 +29,7 @@ export default function Character(props) {
 
             <div className={`sprite mt-3 ${props.isHero ? "" : "flex justify-end"}`}>
                 <Image
-                    src={`/${props.isHero ? "hero":"villain"}/default.png`}
+                    src={`/${props.isHero ? "hero":"villain"}/${props.sprite}.png`}
                     alt={props.isHero ? "hero" : "villain"}
                     width="200"
                     height="200"
