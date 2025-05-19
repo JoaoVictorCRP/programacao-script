@@ -12,15 +12,15 @@ export default function Home() {
         <Character
         name={villain.name}
         life={villain.life}
-        isHero={false}
         sprite={villain.sprite}
+        isHero={false}
         />
       </div>
       <Character
         name={hero.name}
         life={hero.life}
-        isHero={true}
         sprite={hero.sprite}
+        isHero={true}
         onAction={isHeroTurn}
         handleHeroAction={handleHeroAction}
       />

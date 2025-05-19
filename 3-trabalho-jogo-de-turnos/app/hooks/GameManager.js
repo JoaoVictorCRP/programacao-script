@@ -1,5 +1,4 @@
 import { useState } from "react";
-import {setTimeout} from "next/dist/compiled/@edge-runtime/primitives";
 
 export default function GameManager() {
     const initialHero = {life:100, name:"Trump", sprite:"default"}
