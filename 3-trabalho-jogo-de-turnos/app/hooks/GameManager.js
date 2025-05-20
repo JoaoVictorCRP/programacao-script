@@ -1,4 +1,6 @@
-import { useState } from "react";
+import {useEffect, useState} from "react";
+import Swal from "sweetalert2";
+import {useRouter} from "next/router";
 
 export default function GameManager() {
     const initialHero = {life:100, name:"Trump", sprite:"default"}
@@ -9,8 +11,40 @@ export default function GameManager() {
 
     const [isHeroTurn, setIsHeroTurn] = useState(true);
 
+    useEffect(() => {
+        checkGameFinished();
+    }, [hero.life, villain.life]);
+    
+    const showGameOverModal = (winner) => {
+        const [winnerName, loserName] = [
+            winner === "hero" ? "Trump" : "Xi Jinping",
+            winner === "hero" ? "Xi Jinping" : "Trump"
+        ];
 
-    const modifyLife = (target, amount) => {
+        Swal.fire({
+            title: `${winnerName} venceu!`,
+            text: `Mas o ${loserName} quer uma revanche!`,
+            icon: "info",
+            confirmButtonText: "Jogar Novamente",
+            confirmButtonColor: "green",
+        }).then((_result) => {
+            window.location.reload();
+        });
+    }
+
+    const checkGameFinished = () => {
+        console.log(`Vida do herói: ${hero.life}, vida do vilão: ${villain.life}`);
+        if (hero.life === 0) {
+            // TODO: Impedir novas ações após fim de jogo
+            changeSprite("hero", "defeated")
+            showGameOverModal("villain");
+        } else if (villain.life === 0) {
+            changeSprite("villain", "defeated")
+            showGameOverModal("hero");
+        }
+    }
+
+    const modifyLife = async (target, amount) => {
         const setter = target === "hero" ? setHero : setVillain;
         setter((prev) => ({ ...prev,  life: Math.max(0, prev.life + amount) }));
     }
@@ -53,6 +87,7 @@ export default function GameManager() {
             const action = possibleActions[pickAction]
             handleVillainAction(action);
         }, 2000);
+        checkGameFinished("hero");
     }
 
     const handleVillainAction = (action) => {
@@ -61,6 +96,7 @@ export default function GameManager() {
         setTimeout( () => {
             setIsHeroTurn(true);
         }, 2000)
+        checkGameFinished("villain");
     }
 
     return {
