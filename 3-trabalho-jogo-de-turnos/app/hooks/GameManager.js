@@ -42,14 +42,17 @@ export default function GameManager() {
     }
 
     const changeSprite = (target, state) => {
+        // TODO: Personagem não está ficando com sprite "defeated!
         if (hero.sprite === "defeated" || villain.sprite === "defeated") return;
         const setter = target === "hero" ? setHero : setVillain;
         setter((prev) => ({ ...prev,  sprite: state }));
         console.log(`-${state}-`);
-        setTimeout(() => {
-            console.log(`VOU VIRAR DEFAULT!`);
-            setter((prev) => ({ ...prev, sprite: "default" }));
-        }, 1500);
+        if (!gameOver) {
+            setTimeout(() => {
+                console.log(`VOU VIRAR DEFAULT!`);
+                setter((prev) => ({ ...prev, sprite: "default" }));
+            }, 1500);
+        }
     }
 
     const actions = {
