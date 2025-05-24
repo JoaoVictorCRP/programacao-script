@@ -1,20 +1,14 @@
-import {useEffect, useState} from "react";
+import { useState} from "react";
 import Swal from "sweetalert2";
-import {useRouter} from "next/router";
 
 export default function GameManager() {
     const initialHero = {life:100, name:"Trump", sprite:"default"}
     const initialVillain = {life:100, name:"Xi Jinping", sprite:"default"}
-
     const [hero, setHero] = useState(initialHero);
     const [villain, setVillain] = useState(initialVillain);
-
     const [isHeroTurn, setIsHeroTurn] = useState(true);
+    let gameOver = false;
 
-    useEffect(() => {
-        checkGameFinished();
-    }, [hero.life, villain.life]);
-    
     const showGameOverModal = (winner) => {
         const [winnerName, loserName] = [
             winner === "hero" ? "Trump" : "Xi Jinping",
@@ -27,47 +21,49 @@ export default function GameManager() {
             icon: "info",
             confirmButtonText: "Jogar Novamente",
             confirmButtonColor: "green",
-        }).then((_result) => {
-            window.location.reload();
         });
     }
 
-    const checkGameFinished = () => {
-        console.log(`Vida do herói: ${hero.life}, vida do vilão: ${villain.life}`);
-        if (hero.life === 0) {
-            // TODO: Impedir novas ações após fim de jogo
-            changeSprite("hero", "defeated")
-            showGameOverModal("villain");
-        } else if (villain.life === 0) {
-            changeSprite("villain", "defeated")
-            showGameOverModal("hero");
-        }
-    }
-
-    const modifyLife = async (target, amount) => {
+    const modifyLife = (target, damage) => {
         const setter = target === "hero" ? setHero : setVillain;
-        setter((prev) => ({ ...prev,  life: Math.max(0, prev.life + amount) }));
+        setter((prev) => {
+            const newLife = Math.max(0, prev.life - damage);
+
+            // Se a vida acabou, dispara o game over aqui
+            if (newLife === 0) {
+                gameOver = true;
+                const winner = target === "hero" ? "villain" : "hero";
+                showGameOverModal(winner);
+                changeSprite(target, "defeated");
+            }
+
+            return { ...prev, life: newLife };
+        });
     }
 
     const changeSprite = (target, state) => {
+        if (hero.sprite === "defeated" || villain.sprite === "defeated") return;
         const setter = target === "hero" ? setHero : setVillain;
         setter((prev) => ({ ...prev,  sprite: state }));
-        setTimeout( () => {
-            setter((prev) => ({ ...prev, sprite: "default"}));
-        }, 1500)
+        console.log(`-${state}-`);
+        setTimeout(() => {
+            console.log(`VOU VIRAR DEFAULT!`);
+            setter((prev) => ({ ...prev, sprite: "default" }));
+        }, 1500);
     }
 
     const actions = {
         attack: (attacker) => {
             changeSprite(attacker, "attack")
             const target = attacker==="hero" ? "villain" : "hero"
-            modifyLife(target, -10);
-            changeSprite(target, "hurt")
+            modifyLife(target, 10);
+            changeSprite(target, "hurt");
         },
         special: (attacker) => {
             changeSprite(attacker, "special")
             const target = attacker==="hero" ? "villain" : "hero"
-            modifyLife(target, -25);
+            modifyLife(target, 25);
+            changeSprite(target, "hurt")
         },
         skip: () => {
             // zzz...
@@ -75,11 +71,11 @@ export default function GameManager() {
     }
 
     const handleHeroAction = (action) => {
-        console.log(action);
-        if(!isHeroTurn) return;
+        if(!isHeroTurn || gameOver) return; // verifica se deu game over pro heroi
         actions[action]?.("hero");
         setIsHeroTurn(false);
 
+        console.log(`o jogo não acabou. Game Over: ${gameOver}`);
         setTimeout(() => {
             // Turno do vilão
             const pickAction = Math.floor(Math.random() * (2 - 0) + 0)
@@ -87,16 +83,15 @@ export default function GameManager() {
             const action = possibleActions[pickAction]
             handleVillainAction(action);
         }, 2000);
-        checkGameFinished("hero");
     }
 
     const handleVillainAction = (action) => {
-        console.log(action);
+        if(gameOver || villain.sprite==="defeated") return;
+        console.log("Villain ainda vai atacar");
         actions[action]?.("villain");
         setTimeout( () => {
             setIsHeroTurn(true);
         }, 2000)
-        checkGameFinished("villain");
     }
 
     return {

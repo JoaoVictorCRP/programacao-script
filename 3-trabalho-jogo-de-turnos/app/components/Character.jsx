@@ -9,9 +9,8 @@ export default function Character(props) {
         lifeBarColor = "bg-green-500";
     } else {
         lifeBarColor = props.life > 30 ? "bg-yellow-500" : "bg-red-500";
-        console.log(lifeBarColor)
     }
-    console.log(lifePercent);
+
     return (
 
         <div className={`character ${props.isHero? "ml-5":"mr-5"}`}>
