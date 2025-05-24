@@ -42,17 +42,23 @@ export default function GameManager() {
     }
 
     const changeSprite = (target, state) => {
-        // TODO: Personagem não está ficando com sprite "defeated!
-        if (hero.sprite === "defeated" || villain.sprite === "defeated") return;
         const setter = target === "hero" ? setHero : setVillain;
-        setter((prev) => ({ ...prev,  sprite: state }));
-        console.log(`-${state}-`);
-        if (!gameOver) {
-            setTimeout(() => {
-                console.log(`VOU VIRAR DEFAULT!`);
-                setter((prev) => ({ ...prev, sprite: "default" }));
-            }, 1500);
-        }
+        setter((prev) => {
+            const newState = { ...prev, sprite: state };
+            console.log(`${target}'s sprite changed to: ${state}`);
+
+            if (state !== "defeated") {
+                setTimeout(() => {
+                    setter((currentPrev) => { // Usando currentPrev para pegar o último estado do momento que o setTimeout foi disparado
+                        if (currentPrev.sprite === state) { // Se o current sprite ainda estiver mantido após 1.5 segundos do timeout, então alteraremos para default
+                            return { ...currentPrev, sprite: "default" };
+                        }
+                        return currentPrev; // Após a condição acima ser dada como falsa, este return impede a sobrescrição do defeated.
+                    });
+                }, 1500);
+            }
+            return newState;
+        });
     }
 
     const actions = {
@@ -81,7 +87,7 @@ export default function GameManager() {
         console.log(`o jogo não acabou. Game Over: ${gameOver}`);
         setTimeout(() => {
             // Turno do vilão
-            const pickAction = Math.floor(Math.random() * (2 - 0) + 0)
+            const pickAction = Math.floor(Math.random() * (2))
             const possibleActions = ["attack", "special", "skip"]
             const action = possibleActions[pickAction]
             handleVillainAction(action);
@@ -89,7 +95,7 @@ export default function GameManager() {
     }
 
     const handleVillainAction = (action) => {
-        if(gameOver || villain.sprite==="defeated") return;
+        if(gameOver) return;
         console.log("Villain ainda vai atacar");
         actions[action]?.("villain");
         setTimeout( () => {
