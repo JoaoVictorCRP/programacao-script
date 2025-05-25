@@ -1,6 +1,7 @@
 import { useState} from "react";
 import Swal from "sweetalert2";
 import { toast } from 'react-toastify';
+import CustomizedToast from "@/app/components/CustomizedToast";
 
 export default function GameManager() {
     const initialHero = {life:100, name:"Trump", sprite:"default"}
@@ -25,19 +26,28 @@ export default function GameManager() {
         });
     }
 
-    const modifyLife = (target, damage) => {
+    const modifyLife = (target, damage, attackType) => {
         const currentLife = target === "hero" ? hero.life : villain.life;
         const newLife     = Math.max(0, currentLife - damage);
 
         const setter = target === "hero" ? setHero : setVillain;
         setter(prev => ({ ...prev, life: newLife }));
 
-        toast(`${target === "hero" ? "Trump" : "Xi Jinping"} levou ${damage} de dano! Vida restante: ${newLife}`, {
-            icon: "info",
-            position: "bottom-right",
-            autoClose: 2000,
-            className: "bg-slate-400",
-        });
+        toast(
+            <CustomizedToast
+                target={target}
+                damage={damage}
+                attackType={attackType}
+            />,
+            {
+                icon: "info",
+                position: "bottom-right",
+                autoClose: 1500,
+                style: {
+                    "--toastify-color-progress-light": `${target === "hero" ? "red" : "green"}`,
+                },
+            }
+        );
 
         // 4) se zerou, aciona game over também **fora** do setter
         if (newLife === 0 && !gameOver) {
@@ -62,7 +72,7 @@ export default function GameManager() {
                         }
                         return currentPrev; // Após a condição acima ser dada como falsa, este return impede a sobrescrição do defeated.
                     });
-                }, 1500);
+                }, 1700);
             }
             return newState;
         });
@@ -72,17 +82,30 @@ export default function GameManager() {
         attack: (attacker) => {
             changeSprite(attacker, "attack")
             const target = attacker==="hero" ? "villain" : "hero"
-            modifyLife(target, 10);
+            modifyLife(target, 10, "attack");
             changeSprite(target, "hurt");
         },
         special: (attacker) => {
             changeSprite(attacker, "special")
             const target = attacker==="hero" ? "villain" : "hero"
-            modifyLife(target, 25);
+            modifyLife(target, 25, "special");
             changeSprite(target, "hurt")
         },
-        skip: () => {
-            // zzz...
+        skip: (attacker) => {
+            toast(
+                <CustomizedToast
+                    target={attacker==="hero" ? "villain" : "hero"}
+                    attackType="skip"
+                />,
+                {
+                    icon: "info",
+                    position: "bottom-right",
+                    autoClose: 1500,
+                    style: {
+                        "--toastify-color-progress-light": `${attacker === "hero" ? "green" : "red"}`,
+                    },
+                }
+            );
         }
     }
 
@@ -94,7 +117,7 @@ export default function GameManager() {
         console.log(`o jogo não acabou. Game Over: ${gameOver}`);
         setTimeout(() => {
             // Turno do vilão
-            const pickAction = Math.floor(Math.random() * (2))
+            const pickAction = Math.floor(Math.random() * 3)
             const possibleActions = ["attack", "special", "skip"]
             const action = possibleActions[pickAction]
             handleVillainAction(action);

@@ -27,11 +27,9 @@ export default function Home() {
         onAction={isHeroTurn}
         handleHeroAction={handleHeroAction}
       />
-        {/* 1) Container que exibe todos os toasts */}
         <ToastContainer
-
+            progressClassName="bg-blue-500"
         />
-
     </div>
   );
 }
