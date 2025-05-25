@@ -1,5 +1,6 @@
 import { useState} from "react";
 import Swal from "sweetalert2";
+import { toast } from 'react-toastify';
 
 export default function GameManager() {
     const initialHero = {life:100, name:"Trump", sprite:"default"}
@@ -25,21 +26,27 @@ export default function GameManager() {
     }
 
     const modifyLife = (target, damage) => {
+        const currentLife = target === "hero" ? hero.life : villain.life;
+        const newLife     = Math.max(0, currentLife - damage);
+
         const setter = target === "hero" ? setHero : setVillain;
-        setter((prev) => {
-            const newLife = Math.max(0, prev.life - damage);
+        setter(prev => ({ ...prev, life: newLife }));
 
-            // Se a vida acabou, dispara o game over aqui
-            if (newLife === 0) {
-                gameOver = true;
-                const winner = target === "hero" ? "villain" : "hero";
-                showGameOverModal(winner);
-                changeSprite(target, "defeated");
-            }
-
-            return { ...prev, life: newLife };
+        toast(`${target === "hero" ? "Trump" : "Xi Jinping"} levou ${damage} de dano! Vida restante: ${newLife}`, {
+            icon: "info",
+            position: "bottom-right",
+            autoClose: 2000,
+            className: "bg-slate-400",
         });
-    }
+
+        // 4) se zerou, aciona game over também **fora** do setter
+        if (newLife === 0 && !gameOver) {
+            gameOver = true;
+            changeSprite(target, "defeated");
+            const winner = target === "hero" ? "villain" : "hero";
+            showGameOverModal(winner);
+        }
+    };
 
     const changeSprite = (target, state) => {
         const setter = target === "hero" ? setHero : setVillain;
