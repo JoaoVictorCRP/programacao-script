@@ -55,7 +55,7 @@ export default function GameManager() {
                 position: "bottom-right",
                 autoClose: 1500,
                 style: {
-                    "--toastify-color-progress-light": `${target === "hero" ? "red" : "green"}`,
+                    "--toastify-color-progress-light": `${target === "hero" ? "red" : "green"}`, // sobrescrição do style do toast
                 },
             }
         );
@@ -66,11 +66,11 @@ export default function GameManager() {
 
         setter(prev => ({ ...prev, sprite: state }));
 
-        if (state === "defeated") return;
+        if (state === "defeated") return; // se o personagem foi derrotado, não retorne ao sprite padrão
 
         setTimeout(() => {
             setter(prev => {
-                // só reseta se ainda estiver no mesmo state (evita sobrescrever 'defeated' ou outro ataque que já tenha mudado)
+                // só reseta se ainda estiver no mesmo state (isso evita sobrescrever 'defeated' ou outro ataque que já tenha mudado)
                 if (prev.sprite !== state) return prev;
                 return { ...prev, sprite: "default" };
             });
@@ -115,7 +115,6 @@ export default function GameManager() {
         actions[action]?.("hero");
         setIsHeroTurn(false);
 
-        console.log(`o jogo não acabou. Game Over: ${gameOver}`);
         setTimeout(() => {
             // Turno do vilão
             const pickAction = Math.floor(Math.random() * 2)
@@ -127,7 +126,6 @@ export default function GameManager() {
 
     const handleVillainAction = (action) => {
         if(gameOver) return;
-        console.log("Villain ainda vai atacar");
         actions[action]?.("villain");
         setTimeout( () => {
             if (gameOver) return;

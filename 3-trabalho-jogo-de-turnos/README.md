@@ -1,36 +1,74 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Hero vs. Villain – Turn-Based RPG em React/Next.js
 
-## Getting Started
+Um jogo simples de RPG de turno onde Trump e Xi Jinping se enfrentam, desenvolvido como trabalho da disciplina de Programação Script. 
+O principal objetivo deste projeto foi explorar diferentes técnicas de **gerenciamento de estado** em React, incluindo estado local em hooks, 
+gerenciamento global e estratégias para lidar com **prop drilling**.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## 📝 Descrição
+
+Este repositório contém um protótipo de jogo de batalha por turnos, criado para:
+
+1. **Aprender sobre gerenciamento de estados** em aplicações React.
+2. Experimentar o uso de hooks customizados para lógica de jogo.
+3. Explorar abordagens de **prop drilling** vs. gerenciamento global de estado.
+4. Integrar notificações de batalha com **SweetAlert2** e **React-Toastify**.
+
+---
+
+## 🚀 Funcionalidades
+
+- Fluxo de turnos alternados entre Trump e Xi Jinping
+- Sprites com animações de ataque, dano e derrota
+- Modal de “Game Over” com SweetAlert2
+- Logs de batalha em toasts customizados (React-Toastify)
+- Ataques especiais cômicos
+
+---
+
+## 🛠️ Tecnologias
+
+- **Next.js** (App Router)
+- **React** + **React Hooks** (`useState`, `useEffect`)
+- **Tailwind CSS** (layout e estilos utilitários)
+- **SweetAlert2** (modal de Game Over)
+- **React-Toastify** (notificações de combate)
+- **next/image** (renderização otimizada de sprites)
+
+---
+
+## 📂 Estrutura do Projeto
+
+```yaml
+/
+├─ app/
+│ ├─ components/
+│ │  ├─ Character.jsx # Componente visual de personagem
+│ │  └─ ActionTab.jsx # Botões de ação para o herói
+│ │  └─ CustomizedToast.jsx # container de toasts
+│ ├─ hooks/
+│ │  └─ GameManager.jsx # Lógica de estado e turno do jogo
+│ └─ page.jsx # Página principal “Hero vs. Villain”
+├─ public/
+│  ├─ hero/ # Sprites do herói (default, attack, hurt, defeated…)
+│  └─ villain/ # Sprites do vilão (default, attack, hurt, defeated…)
+└─ README.md # Documentação do projeto
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
+## ⚙️ Instalação e Uso
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. **Clone o repositório**
+   ```bash
+   git https://github.com/JoaoVictorCRP/programacao-script.git
+   cd 3-trabalho-jogo-de-turnos
+   ```
+2. **Instale as dependências**
+    ```bash
+    npm install
+    ```
+3. **Execute em modo de desenvolvimento**
+    ```bash
+    npm run dev
+    ```
