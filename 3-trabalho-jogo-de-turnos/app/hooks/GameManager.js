@@ -23,6 +23,10 @@ export default function GameManager() {
             icon: "info",
             confirmButtonText: "Jogar Novamente",
             confirmButtonColor: "green",
+        }).then(result => {
+            if (result.isDismissed || result.isConfirmed) {
+                window.location.reload();
+            }
         });
     }
 
@@ -32,6 +36,13 @@ export default function GameManager() {
 
         const setter = target === "hero" ? setHero : setVillain;
         setter(prev => ({ ...prev, life: newLife }));
+
+        if (newLife === 0 && !gameOver) {
+            gameOver = true;
+            changeSprite(target, "defeated");
+            const winner = target === "hero" ? "villain" : "hero";
+            showGameOverModal(winner);
+        }
 
         toast(
             <CustomizedToast
@@ -48,34 +59,22 @@ export default function GameManager() {
                 },
             }
         );
-
-        // 4) se zerou, aciona game over também **fora** do setter
-        if (newLife === 0 && !gameOver) {
-            gameOver = true;
-            changeSprite(target, "defeated");
-            const winner = target === "hero" ? "villain" : "hero";
-            showGameOverModal(winner);
-        }
     };
 
     const changeSprite = (target, state) => {
         const setter = target === "hero" ? setHero : setVillain;
-        setter((prev) => {
-            const newState = { ...prev, sprite: state };
-            console.log(`${target}'s sprite changed to: ${state}`);
 
-            if (state !== "defeated") {
-                setTimeout(() => {
-                    setter((currentPrev) => { // Usando currentPrev para pegar o último estado do momento que o setTimeout foi disparado
-                        if (currentPrev.sprite === state) { // Se o current sprite ainda estiver mantido após 1.5 segundos do timeout, então alteraremos para default
-                            return { ...currentPrev, sprite: "default" };
-                        }
-                        return currentPrev; // Após a condição acima ser dada como falsa, este return impede a sobrescrição do defeated.
-                    });
-                }, 1700);
-            }
-            return newState;
-        });
+        setter(prev => ({ ...prev, sprite: state }));
+
+        if (state === "defeated") return;
+
+        setTimeout(() => {
+            setter(prev => {
+                // só reseta se ainda estiver no mesmo state (evita sobrescrever 'defeated' ou outro ataque que já tenha mudado)
+                if (prev.sprite !== state) return prev;
+                return { ...prev, sprite: "default" };
+            });
+        }, 1700);
     }
 
     const actions = {
@@ -83,12 +82,14 @@ export default function GameManager() {
             changeSprite(attacker, "attack")
             const target = attacker==="hero" ? "villain" : "hero"
             modifyLife(target, 10, "attack");
+            if (gameOver) return;
             changeSprite(target, "hurt");
         },
         special: (attacker) => {
             changeSprite(attacker, "special")
             const target = attacker==="hero" ? "villain" : "hero"
             modifyLife(target, 25, "special");
+            if (gameOver) return;
             changeSprite(target, "hurt")
         },
         skip: (attacker) => {
@@ -117,7 +118,7 @@ export default function GameManager() {
         console.log(`o jogo não acabou. Game Over: ${gameOver}`);
         setTimeout(() => {
             // Turno do vilão
-            const pickAction = Math.floor(Math.random() * 3)
+            const pickAction = Math.floor(Math.random() * 2)
             const possibleActions = ["attack", "special", "skip"]
             const action = possibleActions[pickAction]
             handleVillainAction(action);
@@ -129,6 +130,7 @@ export default function GameManager() {
         console.log("Villain ainda vai atacar");
         actions[action]?.("villain");
         setTimeout( () => {
+            if (gameOver) return;
             setIsHeroTurn(true);
         }, 2000)
     }
