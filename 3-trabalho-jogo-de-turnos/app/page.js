@@ -1,6 +1,9 @@
 "use client";
 import Character from "@/app/components/Character";
 import GameManager from "@/app/hooks/GameManager";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 export default function Home() {
     const {hero, villain, handleHeroAction, isHeroTurn} = GameManager();
@@ -24,6 +27,11 @@ export default function Home() {
         onAction={isHeroTurn}
         handleHeroAction={handleHeroAction}
       />
+        {/* 1) Container que exibe todos os toasts */}
+        <ToastContainer
+
+        />
+
     </div>
   );
 }

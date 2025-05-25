@@ -1,5 +1,6 @@
 import "./globals.css";
 import { Share_Tech_Mono} from "next/font/google";
+import 'react-toastify/dist/ReactToastify.css';
 
 const shareTech = Share_Tech_Mono({
     subsets: ["latin"],
@@ -14,9 +15,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body
-        className={`${shareTech.className} antialiased`}
-      >
+      <body className={`${shareTech.className} antialiased`}>
         {children}
       </body>
     </html>
